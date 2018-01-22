@@ -273,6 +273,106 @@ function repeatStringNumTimes2(str, num){
 console.log(repeatStringNumTimes2("abc", 3));
 
 
+/*
+09. TruncateString- if it is longer than the given maximum string length (second argument).
+    Return the truncated string with a ... ending.
+*/
+
+function truncateString(str, num){
+
+  if(str.length <= num){
+    return str;
+  }else if(num <= 3){
+    return str.slice(0, num).concat('...');
+  }else {
+    return str.slice(0, num-3).concat('...');
+  }
+
+  return str;
+}
+
+console.log(truncateString("A-tisket a-tasket A green and yellow basket", 11));
+console.log(truncateString("A-", 1));
+
+/*
+09A. TruncateString- if it is longer than the given maximum string length (second argument).
+    Return the truncated string with a ... ending.
+***Using ternary operator
+*/
+
+function truncateString2(str, num) {
+
+  if(str.length > num)
+    return str.slice(0, num>3 ? num-3 : num) + '...';
+
+  return str;
+}
+
+console.log(truncateString2("A-tisket a-tasket A green and yellow basket", 11));
+console.log(truncateString("A-", 1));
+
+/*
+10. Chunky monkey -Split an array (first argument) into groups the length of size (second argument)
+    and returns them as a two-dimensional array.
+*** with while loop
+*/
+
+function chunkArrayInGroups(arr, size){
+  var newArr = [];
+  var counter = 0;
+  while(counter < arr.length){
+    newArr.push(arr.slice(counter, counter + size));
+    counter += size
+  }
+  return newArr;
+}
+
+console.log(chunkArrayInGroups(["a", "b", "c", "d", "e"], 2));
+
+/*
+10A. Chunky monkey -Split an array (first argument) into groups the length of size (second argument)
+     and returns them as a two-dimensional array.
+*** with for loop
+*/
+
+function chunkArrayInGroups2(arr, size) {
+  var newArr = [];
+  var stop = size;
+
+  for(var i = 0; i < arr.length; i += size) {
+    newArr.push(arr.slice(i, stop));
+    stop += size;
+
+  }
+  return newArr;
+}
+
+chunkArrayInGroups2(["a", "b", "c", "d"], 2);
+
+/*
+11.Slash Flick -Return the remaining elements of an array after chopping off n elements from the head.
+*/
+
+function slasher(arr, howMany){
+  var newArr = [];
+  arr.splice(0, howMany);
+  return newArr;
+}
+
+console.log(slasher([1, 2, 3], 2););
+
+
+12. Mutation - Return true if the string in the first element of the array contains all
+               of the letters of the string in the second element of the array.
+
+
+function mutation(arr){
+  return arr;
+}
+
+cosole.log(mutation(["hello", "hey"]););
+
+
 
 
 
