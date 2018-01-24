@@ -354,25 +354,62 @@ chunkArrayInGroups2(["a", "b", "c", "d"], 2);
 */
 
 function slasher(arr, howMany){
-  var newArr = [];
+
   arr.splice(0, howMany);
-  return newArr;
-}
-
-console.log(slasher([1, 2, 3], 2););
-
-
-12. Mutation - Return true if the string in the first element of the array contains all
-               of the letters of the string in the second element of the array.
-
-
-function mutation(arr){
   return arr;
 }
 
-cosole.log(mutation(["hello", "hey"]););
+console.log(slasher([1, 2, 3], 2));
 
+/*
+12. Mutation - Return true if the string in the first element of the array contains all
+               of the letters of the string in the second element of the array.
+*/
 
+function mutation(arr){
+  var first = arr[0].toLowerCase();
+  var second = arr[1].toLowerCase();
 
+  for (var i = 0; i< second.length; i++){
+    if (first.indexOf(second[i]) < 0){
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(mutation(["hello", "hey"]));
+
+/*
+13. Falsy Bouncer - Remove all falsy values from an array.
+*** filter method
+*/
+
+function bouncer(arr) {
+
+  //returning array item if true
+  return arr.filter(function(item){
+    return item;
+  });
+
+}
+
+console.log(bouncer([7, "ate", "", false, 9]));
+
+/*
+14. Seek and Destroy -You will be provided with an initial array (the first argument in the destroyer
+    function), followed by one or more arguments. Remove all elements from the initial array that are of
+    the same value as these arguments.
+*** using filter(), Array.from() and includes() method
+*/
+
+function destroyer(arr){
+  var args = Array.from(arguments).slice(1);
+  return arr.filter(function(item){
+    return !args.includes(item);
+  })
+}
+
+console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
 
 
