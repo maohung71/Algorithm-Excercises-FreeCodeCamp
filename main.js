@@ -412,4 +412,122 @@ function destroyer(arr){
 
 console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
 
+/*
+15. Where Do I Belong - Return the lowest index at which a value (second argument) should be inserted
+    into an array (first argument) once it has been sorted. The returned value should be a number.
+*** concat(), sort() and indexOf() method
+*/
+
+
+function getIndexToIns(arr, num){
+  return arr.concat(num).sort(function(a, b){
+    return a - b;
+  }).indexOf(num);
+
+}
+
+console.log(getIndexToIns([40, 60], 50));
+
+
+/*
+15A. Where Do I Belong - Return the lowest index at which a value (second argument) should be inserted
+    into an array (first argument) once it has been sorted. The returned value should be a number.
+*/
+
+
+/*
+function getIndexToIns(arr, num){
+  var number = [];
+  for(var i = 0; i < arr.length; i++){
+    if(arr[i] < num){
+      number.push(arr[i]);
+    }
+  }
+  return number.length;
+}
+
+console.log(getIndexToIns([40, 60], 50));
+*/
+
+
+/*
+16. Caesars Cipher -  meanings of the letters are shifted by some set amount.
+     ROT13 cipher, where the values of the letters are shifted by 13 places. Thus 'A' ↔ 'N', 'B' ↔ 'O' and so on.
+*** basic solution with for loops
+*/
+
+function rot13(str){
+
+  //create array of alphabets
+  var alphabets = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N',
+                   'O','P','Q','R','S','T','U','V','W','X','Y','Z','A','B',
+                   'C','D','E','F','G','H','I','J','K','L','M','N'];
+
+  var strToArray = str.split('');
+  var rotString = [];
+
+  //iterate throught strToArray and push /[_W]/g into array
+  for(var i = 0; i < strToArray.length; i++){
+    if(alphabets.indexOf(strToArray[i]) === -1){
+      rotString.push(strToArray[i]);
+    }else{
+
+      //iterate throught alphabets array
+      for(var j = 0; j < alphabets.length; j++){
+
+        //if sting array matches alphabet array
+        if(strToArray[i] === alphabets[j]){
+
+          //push content to rotString + shift 13 spaces
+          rotString.push(alphabets[j+13]);
+        }
+      }
+    }
+  }
+  return rotString.join('');
+
+}
+
+console.log(rot13("SERR PBQR PNZC!"));
+
+/*
+16A. Caesars Cipher -  meanings of the letters are shifted by some set amount.
+     ROT13 cipher, where the values of the letters are shifted by 13 places. Thus 'A' ↔ 'N', 'B' ↔ 'O' and so on.
+*** with map, charCodeAt, String.fromCharCode method
+*/
+
+function rot13A(str){
+
+  var strToArray = str.split('');
+
+  return strToArray.map(function(letter){
+
+    //convert letter and convert to its' numerical value
+    letter = letter.charCodeAt();
+
+    //add 13 if letter is between A and M or subtract 13 if letter is between N to Z
+    if(letter >= 65 && letter <= 77){
+      letter += 13;
+    }else if(letter >= 78 && letter <= 90){
+      letter -= 13;
+    }
+
+    //take letter numerical value and create a new string integer
+    return String.fromCharCode(letter);
+
+    //switiching back from array to string
+  }).join('');
+
+
+}
+
+console.log(rot13A("SERR PBQR PNZC"));
+
+
+
+
+
+
+
+
 
